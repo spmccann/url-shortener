@@ -1,0 +1,14 @@
+<h1> URL shortener </h1>
+
+<%= form_with model: @url do |form| %>
+  <%= form.label :full_url, "URL: " %>
+  <%= form.text_field :full_url %>
+  <%= form.hidden_field :url_key, value: 'Hello' %>
+  <%= form.submit %>
+  
+<% end %>
+
+<% @urls.each do |url|%>
+  <%= url.full_url %> <br>
+  <%= url.url_key %> <br>
+<% end %>
