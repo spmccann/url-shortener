@@ -3,12 +3,14 @@
 <%= form_with model: @url do |form| %>
   <%= form.label :full_url, "URL: " %>
   <%= form.text_field :full_url %>
-  <%= form.hidden_field :url_key, value: 'Hello' %>
+  <%= form.hidden_field :url_string,  value: @url_string %>
   <%= form.submit %>
   
 <% end %>
 
 <% @urls.each do |url|%>
-  <%= url.full_url %> <br>
-  <%= url.url_key %> <br>
+<br>
+  <%= url.full_url %> <br> <br>
+  <%= url.url_string %> <br> <br>
+  <%= @short_link%>
 <% end %>

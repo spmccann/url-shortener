@@ -10,10 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_23_043638) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_24_012747) do
+  create_table "genlinks", force: :cascade do |t|
+    t.string "url_string"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "urls", force: :cascade do |t|
     t.text "full_url"
-    t.string "url_key"
+    t.string "url_string"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
