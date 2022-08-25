@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   resources :urls
   # Defines the root path route ("/")
   # root "articles#index"
+  get ':url_string', to: 'urls#redirect' 
   root to: 'urls#index'
 end

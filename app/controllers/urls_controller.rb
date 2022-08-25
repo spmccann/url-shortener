@@ -14,15 +14,19 @@ class UrlsController < ApplicationController
   end
 
   def index
-    @url_string = Base64.encode64(Url.maximum(:id).next.to_s)
+    request.url
+    @url_string = Base64.urlsafe_encode64(Url.maximum(:id).next.to_s)
     @urls = Url.all
     @short_link = "localhost:3000/#{@url_string}"
   end
 
-  def check_url
-    uri = URI.parse(@short_link)
-    id = uri.path.split('/')
-    params = CGI.parse(uri.query)
+  def redirect
+    answer_query = Url.find_by('url_string = ?', params[:url_string])
+    if answer_query.nil?
+      redirect_to root_path, notice: 'Sorry that link does not exist'
+    else
+      redirect_to answer_query.full_url, allow_other_host: true
+    end
   end
 
   private
