@@ -1,9 +1,9 @@
 <% if flash.any? %>
-<% flash.each do |type, msg| %>
-<div>
-<%= msg %>
-</div>
-<% end %>
+  <% flash.each do |type, msg| %>
+    <div>
+      <%= msg %>
+    </div>
+  <% end %>
 <% end %>
 
 
@@ -13,8 +13,7 @@
   <%= form.label :full_url, "URL: " %>
   <%= form.text_field :full_url %>
   <%= form.hidden_field :url_string,  value: @url_string %>
-  <%= form.submit "Shorten" %>
-  
+  <%= form.submit "Shorten" %> 
 <% end %>
 
 <br>
