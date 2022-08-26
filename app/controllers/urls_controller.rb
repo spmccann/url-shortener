@@ -9,7 +9,7 @@ class UrlsController < ApplicationController
     if @url.save
       redirect_to root_path
     else
-      render :new, status: unprocessable_entity
+      redirect_to root_path, notice: 'Not a valid URL. Please Try Again'
     end
   end
 
@@ -23,7 +23,7 @@ class UrlsController < ApplicationController
   def redirect
     answer_query = Url.find_by('url_string = ?', params[:url_string])
     if answer_query.nil?
-      redirect_to root_path, notice: 'Sorry that link does not exist'
+      redirect_to root_path, notice: 'Sorry, that link does not exist.'
     else
       redirect_to answer_query.full_url, allow_other_host: true
     end

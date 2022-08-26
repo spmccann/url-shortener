@@ -1,16 +1,23 @@
-<h1> URL shortener </h1>
+<% if flash.any? %>
+<% flash.each do |type, msg| %>
+<div>
+<%= msg %>
+</div>
+<% end %>
+<% end %>
+
+
+<h1> URL Shortener </h1>
 
 <%= form_with model: @url do |form| %>
   <%= form.label :full_url, "URL: " %>
   <%= form.text_field :full_url %>
   <%= form.hidden_field :url_string,  value: @url_string %>
-  <%= form.submit %>
+  <%= form.submit "Shorten" %>
   
 <% end %>
 
-<% @urls.each do |url|%>
 <br>
-  <%= url.full_url %> <br> <br>
-  <%= url.url_string %> <br> <br>
-  <%= @short_link%> <br> <br>
-<% end %>
+<p> Original URL: <%= link_to @urls.last.full_url, @urls.last.full_url %> </p>
+<p> Shorter URL: <%= request.host_with_port%>/<%= @urls.last.url_string %></p>
+
